@@ -830,9 +830,10 @@ int lgw_start(void) {
 	setup_sx125x(0, rf_rx_freq[0]);
 	setup_sx125x(1, rf_rx_freq[1]);
 
-	/* gives AGC control of GPIOs to enable Tx external digital filter */
+	/* Rx and Tx packets signalling through GPIOs */
+	/* see https://github.com/Lora-net/lora_gateway/wiki/SX1301-GPIO-output-configuration */
 	lgw_reg_w(LGW_GPIO_MODE,31); /* Set all GPIOs as output */
-	lgw_reg_w(LGW_GPIO_SELECT_OUTPUT,2);
+	lgw_reg_w(LGW_GPIO_SELECT_OUTPUT,0);
 
 	/* GPIOs table :
 	DGPIO0 -> N/A
